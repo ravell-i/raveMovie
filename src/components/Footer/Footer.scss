@@ -1,0 +1,11 @@
+@use "../../common/color.scss" as r;
+
+.footer {
+    background: r.$secondary-color;
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: r.$font-primary;
+    flex-direction: column;
+}
