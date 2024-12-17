@@ -34,6 +34,7 @@ const initialState = {
   movies: {},
   shows: {},
   selectMovieOrShow: {},
+  loader: false,
 };
 
 const movieSlice = createSlice({
@@ -46,23 +47,29 @@ const movieSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchAsyncMovies.pending, () => {
+      .addCase(fetchAsyncMovies.pending, (state) => {
         console.log("Pending");
+        state.loader = true;
       })
       .addCase(fetchAsyncMovies.fulfilled, (state, action) => {
         console.log("Fetched Successfully!");
-        return { ...state, movies: action.payload };
+        state.loader = false;
+        state.movies = action.payload;
+        // return { ...state, movies: action.payload };
       })
       .addCase(fetchAsyncMovies.rejected, () => {
+        state.loader = false;
         console.log("Rejected!");
       })
       .addCase(fetchAsyncShows.fulfilled, (state, action) => {
         console.log("Fetched Successfully!");
-        return { ...state, shows: action.payload };
+        state.shows = action.payload;
+        // return { ...state, shows: action.payload };
       })
       .addCase(fetchAsyncMovieOrShowDetail.fulfilled, (state, action) => {
         console.log("Fetched Successfully!");
-        return { ...state, selectMovieOrShow: action.payload };
+        state.selectMovieOrShow = action.payload;
+        // return { ...state, selectMovieOrShow: action.payload };
       });
   },
 });
@@ -70,5 +77,6 @@ const movieSlice = createSlice({
 export const { removeSelectedMovieOrShow } = movieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllShows = (state) => state.movies.shows;
+export const isLoading = (state) => state.movies.loader;
 export const getSelectedMovieOrShow = (state) => state.movies.selectMovieOrShow;
 export default movieSlice.reducer;

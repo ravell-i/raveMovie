@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Header></Header>
+        <Header />
         <div className="container">
           <Routes>
             <Route path="/" exact Component={Home}></Route>
@@ -19,7 +19,7 @@ function App() {
             <Route path="*" Component={PageNotFound}></Route>
           </Routes>
         </div>
-        <Footer></Footer>
+        <Footer />
       </Router>
     </div>
   );
