@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import { Settings } from "../../common/settings";
+import { Settings } from "../../common/Settings";
 import "./MovieListing.scss";
 import { useSelector } from "react-redux";
 import {
